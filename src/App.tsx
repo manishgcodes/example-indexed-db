@@ -102,23 +102,29 @@ function App() {
               placeholder="Last Name"
             />
             <button type="submit">
-              {isEditing !== null ? "Update" : "Submit"}
+              {isEditing !== null ? "Update" : "Add"}
             </button>
           </form>
         </div>
         <div className="list-container">
           <ul>
-            {items.map(({ id, firstname, lastname }) => (
-              <li key={id}>
-                <span className="user-name">
-                  {firstname} {lastname}
-                </span>
-                <div className="button-group">
-                  <button onClick={() => handleEdit(id)}>Edit</button>
-                  <button onClick={() => handleDelete(id)}>Delete</button>
-                </div>
-              </li>
-            ))}
+            {items.length ? (
+              items.map(({ id, firstname, lastname }) => (
+                <li key={id}>
+                  <span className="user-name">
+                    {firstname} {lastname}
+                  </span>
+                  <div className="button-group">
+                    <button onClick={() => handleEdit(id)}>Edit</button>
+                    <button onClick={() => handleDelete(id)}>Delete</button>
+                  </div>
+                </li>
+              ))
+            ) : (
+              <div className="no-records">
+                <span>No record found</span>
+              </div>
+            )}
           </ul>
         </div>
       </div>
