@@ -8,17 +8,7 @@ This repository demonstrates how to use IndexedDB in a React application to mana
 - [Features](#features)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Running the Application](#running-the-application)
-- [Usage](#usage)
-  - [Using the Custom Hook](#using-the-custom-hook)
-  - [Using the App Component](#using-the-app-component)
-- [Code Explanation](#code-explanation)
-  - [Custom Hook: `useIndexedDB`](#custom-hook-useindexeddb)
-  - [Component: `App`](#component-app)
-- [File Structure](#file-structure)
-- [Contributing](#contributing)
-- [License](#license)
+  - [Installation and Running the Application](#installation)
 
 ## Introduction
 
@@ -46,6 +36,7 @@ Ensure you have the following software installed on your local development envir
 Clone this repository to your local machine and install the dependencies:
 
 ```sh
-git clone https://github.com/yourusername/indexeddb-react-app.git
+git clone https://github.com/manishgcodes/indexeddb-react-app.git
 cd indexeddb-react-app
 npm install
+npm run dev 
