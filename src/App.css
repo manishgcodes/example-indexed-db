@@ -1,11 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
-#root {
-  width: 100%;
-}
-
 .app {
   max-width: 1200px;
   margin: auto;
