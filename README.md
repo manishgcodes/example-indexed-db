@@ -1,30 +1,51 @@
-# React + TypeScript + Vite
+# IndexedDB React App Example
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository demonstrates how to use IndexedDB in a React application to manage and persist data locally. The project is created using Vite for a fast and optimized development environment.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Introduction](#introduction)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the Application](#running-the-application)
+- [Usage](#usage)
+  - [Using the Custom Hook](#using-the-custom-hook)
+  - [Using the App Component](#using-the-app-component)
+- [Code Explanation](#code-explanation)
+  - [Custom Hook: `useIndexedDB`](#custom-hook-useindexeddb)
+  - [Component: `App`](#component-app)
+- [File Structure](#file-structure)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Expanding the ESLint configuration
+## Introduction
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+This project provides a clear example of how to use IndexedDB in a React application. It includes a custom hook `useIndexedDB` for performing CRUD operations on IndexedDB and an example `App` component demonstrating its usage. IndexedDB is a low-level API for client-side storage of significant amounts of structured data, including files/blobs. This example can help developers integrate IndexedDB into their upcoming or existing frontend projects.
 
-- Configure the top-level `parserOptions` property like this:
+## Features
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- **Custom Hook**: A reusable custom hook for managing IndexedDB operations.
+- **CRUD Operations**: Examples of Create, Read, Update, and Delete operations.
+- **State Management**: Uses React's `useState` and `useEffect` for state management and side effects.
+- **Optimized Setup**: Created with Vite for a fast and optimized development experience.
+- **TypeScript Support**: Includes TypeScript for type safety and improved developer experience.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Getting Started
+
+### Prerequisites
+
+Ensure you have the following software installed on your local development environment:
+
+- [Node.js](https://nodejs.org/) (version 12 or higher)
+- [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
+
+### Installation
+
+Clone this repository to your local machine and install the dependencies:
+
+```sh
+git clone https://github.com/yourusername/indexeddb-react-app.git
+cd indexeddb-react-app
+npm install

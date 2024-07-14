@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Database } from "utils/constants";
 import { useCallback, useEffect, useState } from "react";
+import { Database } from "utils/constants";
 
+// Interface defining the return type for useIndexedDB hook
 interface UseIndexedDBResult {
   getValue: (tableName: string, id: number) => Promise<any>;
   getAllValue: (tableName: string) => Promise<any[]>;
@@ -13,13 +14,12 @@ interface UseIndexedDBResult {
     id: number;
     newItem: any;
   }) => void;
-  updateDBValue: (tableName: string, id: number, newValue: any) => void;
   deleteValue: (tableName: string, id: number) => number | null;
   deleteAll: (tableName: string) => void;
   isDBConnecting: boolean;
 }
 
-const useIndexedDB = (
+export const useIndexedDB = (
   databaseName: string,
   tableNames: string[]
 ): UseIndexedDBResult => {
@@ -30,6 +30,7 @@ const useIndexedDB = (
     const initDB = () => {
       const request = indexedDB.open(databaseName, Database.version);
 
+      // Handle database upgrade
       request.onupgradeneeded = () => {
         const database = request.result;
         tableNames.forEach((tableName) => {
@@ -42,11 +43,13 @@ const useIndexedDB = (
         });
       };
 
+      // Handle successful database connection
       request.onsuccess = () => {
         setDB(request.result);
         setIsDBConnecting(false);
       };
 
+      // Handle errors in database connection
       request.onerror = () => {
         console.error("Error initializing IndexedDB:", request.error);
         setIsDBConnecting(false);
@@ -58,11 +61,13 @@ const useIndexedDB = (
     }
   }, [databaseName, tableNames, db]);
 
+  // Helper function to get a transaction for a specific table
   const getTransaction = (tableName: string, mode: IDBTransactionMode) => {
     if (!db) throw new Error("Database is not initialized");
     return db.transaction(tableName, mode).objectStore(tableName);
   };
 
+  // Function to get a specific value from the table by ID
   const getValue = useCallback(
     (tableName: string, id: number): Promise<any> => {
       return new Promise((resolve, reject) => {
@@ -79,6 +84,7 @@ const useIndexedDB = (
     [db]
   );
 
+  // Function to get all values from a specific table
   const getAllValue = (tableName: string): Promise<any[]> => {
     return new Promise((resolve, reject) => {
       try {
@@ -92,6 +98,7 @@ const useIndexedDB = (
     });
   };
 
+  // Function to insert or update a single value in a specific table
   const putValue = (
     tableName: string,
     value: object
@@ -100,7 +107,6 @@ const useIndexedDB = (
       try {
         const store = getTransaction(tableName, "readwrite");
         const request = store.put(value);
-
         request.onsuccess = () => resolve(request.result);
         request.onerror = () => reject(request.error);
       } catch (error) {
@@ -109,6 +115,7 @@ const useIndexedDB = (
     });
   };
 
+  // Function to insert or update multiple values in a specific table
   const putBulkValue = async (
     tableName: string,
     values: object[]
@@ -122,6 +129,7 @@ const useIndexedDB = (
     }
   };
 
+  // Function to update a specific value by ID in a specific table
   const updateValue = ({
     tableName,
     id,
@@ -134,7 +142,6 @@ const useIndexedDB = (
     try {
       const store = getTransaction(tableName, "readwrite");
       const request = store.get(id);
-
       request.onsuccess = () => {
         const data = request.result;
         const updatedItem = data ? { ...data, ...newItem } : { id, newItem };
@@ -145,23 +152,7 @@ const useIndexedDB = (
     }
   };
 
-  const updateDBValue = (tableName: string, id: number, newValue: any) => {
-    try {
-      const store = getTransaction(tableName, "readwrite");
-      const request = store.get(id);
-
-      request.onsuccess = () => {
-        const data = request.result;
-        const updatedValue = data
-          ? { ...data, ...newValue }
-          : { id, ...newValue };
-        store.put(updatedValue);
-      };
-    } catch (error) {
-      console.error("Update DB value failed: ", error);
-    }
-  };
-
+  // Function to delete a specific value by ID from a specific table
   const deleteValue = (tableName: string, id: number): number | null => {
     try {
       const store = getTransaction(tableName, "readwrite");
@@ -173,6 +164,7 @@ const useIndexedDB = (
     }
   };
 
+  // Function to delete all values from a specific table
   const deleteAll = (tableName: string) => {
     try {
       const store = getTransaction(tableName, "readwrite");
@@ -188,11 +180,8 @@ const useIndexedDB = (
     putValue,
     putBulkValue,
     updateValue,
-    updateDBValue,
     deleteValue,
     deleteAll,
     isDBConnecting,
   };
 };
-
-export default useIndexedDB;
