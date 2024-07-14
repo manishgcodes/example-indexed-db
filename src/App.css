@@ -1,3 +1,109 @@
+* {
+  box-sizing: border-box;
+}
 
+#root {
+  width: 100%;
+}
 
+.app {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
 
+header {
+  text-align: center;
+  margin-bottom: 20px;
+
+  h1 {
+    font-size: 48px;
+    font-weight: bold;
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-container,
+.list-container {
+  width: 45%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  margin-bottom: 10px;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 400;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 14px 16px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.list-container ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-container .user-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.list-container li {
+  padding: 8px 16px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.list-container .button-group {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.list-container button {
+  margin-left: 10px;
+  padding: 8px 16px;
+  background-color: #b42533;
+}
+
+.list-container button:hover {
+  background-color: #c82333;
+  outline: 2px solid white;
+}
+
+.list-container button:first-of-type {
+  background-color: #d8a200;
+}
+
+.list-container button:first-of-type:hover {
+  background-color: #e0a800;
+  outline: 2px solid white;
+}
