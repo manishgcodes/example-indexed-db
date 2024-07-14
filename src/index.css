@@ -27,4 +27,12 @@ body {
   #root {
     width: 100%;
   }
+
+  #author {
+    position: fixed;
+    bottom: 8px;
+    right: 24px;
+    font-size: 14px;
+    font-family: none;
+  }
 }
