@@ -6,5 +6,11 @@ import "./index.css";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <App />
+    <div id="author">
+      authored by:
+      <a href="https://github.com/manishgcodes" target="_blank">
+        manishgcodes
+      </a>
+    </div>
   </React.StrictMode>
 );
