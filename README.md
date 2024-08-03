@@ -28,7 +28,7 @@ This project provides a clear example of how to use IndexedDB in a React applica
 
 Ensure you have the following software installed on your local development environment:
 
-- [Node.js](https://nodejs.org/) (version 12 or higher)
+- [Node.js](https://nodejs.org/) (version 18 or higher)
 - [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
 
 ### Installation
